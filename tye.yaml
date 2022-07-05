@@ -1,0 +1,43 @@
+# tye application configuration file
+# read all about it at https://github.com/dotnet/tye
+#
+# when you've given us a try, we'd love to know what you think:
+#    https://aka.ms/AA7q20u
+#
+name: virtualfreezer
+services:
+  - name: virtualfreezer-gateway
+    project: Getaway/src/VirtualFreezer.Gateway/VirtualFreezer.Gateway.csproj
+    bindings:
+      - port: 5001
+    env:
+      - name: ASPNETCORE_ENVIRONMENT
+        value: development
+  - name: virtualfreezer-identity-api
+    project: Identity/src/VirtualFreezer.Identity/VirtualFreezer.Identity.csproj
+    bindings:
+      - port: 5010
+    env:
+      - name: ASPNETCORE_ENVIRONMENT
+        value: development
+  - name: virtualfreezer-notifications-api
+    project: Notifications/src/VirtualFreezer.Notifications.Api/VirtualFreezer.Notifications.Api.csproj
+    bindings:
+      - port: 5020
+    env:
+      - name: ASPNETCORE_ENVIRONMENT
+        value: development
+  - name: virtualfreezer-productdefinitions-api
+    project: ProductDefinitions/src/VirtualFreezer.ProductDefinitions.Api/VirtualFreezer.ProductDefinitions.Api.csproj
+    bindings:
+      - port: 5030
+    env:
+      - name: ASPNETCORE_ENVIRONMENT
+        value: development
+  - name: virtualfreezer-products-api
+    project: Products/src/VirtualFreezer.Products.Api/VirtualFreezer.Products.Api.csproj
+    bindings:
+      - port: 5040
+    env:
+      - name: ASPNETCORE_ENVIRONMENT
+        value: development
