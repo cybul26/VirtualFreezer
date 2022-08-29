@@ -7,7 +7,7 @@
 name: virtualfreezer
 services:
   - name: virtualfreezer-gateway
-    project: Getaway/src/VirtualFreezer.Gateway/VirtualFreezer.Gateway.csproj
+    project: Gateway/src/VirtualFreezer.Gateway/VirtualFreezer.Gateway.csproj
     bindings:
       - port: 5001
     env:
