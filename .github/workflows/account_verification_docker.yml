@@ -19,7 +19,7 @@ jobs:
         run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       - name: Get current date
         id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d--%M-%S')"
+        run: echo "::set-output name=date::$(date +%s)"
 
       - name: Build the docker image
         run: docker build . --file AccountVerification/Dockerfile --tag $DOCKER_USER/virtual-freezer-account-verification:${{ steps.date.outputs.date }}
