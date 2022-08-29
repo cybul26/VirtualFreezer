@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 as build
 
 WORKDIR /app
 COPY . .
-RUN dotnet publish ./Gateway/src/VirtualFreezer.Identity/VirtualFreezer.Identity.csproj -o /app/published-app -c Release
+RUN dotnet publish ./Identity/src/VirtualFreezer.Identity/VirtualFreezer.Identity.csproj -o /app/published-app -c Release
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 as runtime
 WORKDIR /app
