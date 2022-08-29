@@ -7,7 +7,7 @@ using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegiste
 
 namespace VirtualFreezer.Shared.Infrastructure.Auth;
 
-internal sealed class AuthManager : IAuthManager
+public sealed class AuthManager : IAuthManager
 {
     private static readonly Dictionary<string, IEnumerable<string>> EmptyClaims = new();
     private readonly AuthOptions _options;

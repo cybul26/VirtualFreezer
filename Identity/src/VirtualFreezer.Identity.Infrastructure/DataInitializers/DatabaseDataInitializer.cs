@@ -29,7 +29,7 @@ internal class DatabaseDataInitializer : IDataInitializer
 
         _logger.LogInformation("Creating administrator account...");
         var administrator =
-            new User(Guid.NewGuid(), "lol@com.pl", _passwordManager.Secure("admin"), true, "string.Empty");
+            new User(Guid.NewGuid(), "admin@freezer.pl", _passwordManager.Secure("admin"), true);
 
         await _context.Users.AddAsync(administrator);
         await _context.SaveChangesAsync();

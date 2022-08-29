@@ -1,7 +1,7 @@
 using FastEndpoints;
 using FluentValidation;
 
-namespace VirtualFreezer.Identity.Application.Features.Verify;
+namespace VirtualFreezer.AccountVerification.Application.Features.Verify;
 
 internal class VerifyAccountValidator : Validator<VerifyAccountRequest>
 {

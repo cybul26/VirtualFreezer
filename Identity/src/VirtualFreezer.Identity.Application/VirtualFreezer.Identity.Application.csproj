@@ -8,7 +8,12 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\Shared\Infrastructure\VirtualFreezer.Shared.Infrastructure.csproj" />
+      <ProjectReference Include="..\..\..\Shared\MessageContracts\VirtualFreezer.Shared.MessageContracts.csproj" />
       <ProjectReference Include="..\VirtualFreezer.Identity.Domain\VirtualFreezer.Identity.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MassTransit.Abstractions" Version="8.0.5" />
     </ItemGroup>
 
 </Project>

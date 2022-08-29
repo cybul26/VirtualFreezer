@@ -1,6 +1,6 @@
 namespace VirtualFreezer.Shared.Infrastructure.Time;
 
-internal interface IClock
+public interface IClock
 {
     DateTime CurrentDate();
 }

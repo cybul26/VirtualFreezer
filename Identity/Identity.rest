@@ -1,0 +1,32 @@
+@url = http://localhost:5010
+
+###
+@email = pawelc4@sevenet.pl
+@password = Sevenet7
+
+### Create account
+POST {{url}}/sign-up
+Content-Type: application/json
+
+{
+  "email": "{{email}}",
+  "password": "{{password}}"
+}
+
+### Verify user
+@verificationHash = 0MeW03L8nfqW3djyiiGP3OeiWBVUacEDSdY3iher55w
+
+PUT {{url}}/verify?verificationHash={{verificationHash}}
+
+### Login user
+POST {{url}}/sign-in
+Content-Type: application/json
+
+{
+  "email": "{{email}}",
+  "password": "{{password}}"
+}
+
+### Logout agent
+DELETE  {{url}}/sign-out
+Content-Type: application/json

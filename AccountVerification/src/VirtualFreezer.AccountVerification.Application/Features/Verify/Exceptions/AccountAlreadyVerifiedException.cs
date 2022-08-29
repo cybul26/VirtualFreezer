@@ -1,6 +1,6 @@
 using VirtualFreezer.Shared.Infrastructure.Exceptions.Models;
 
-namespace VirtualFreezer.Identity.Application.Exceptions;
+namespace VirtualFreezer.AccountVerification.Application.Features.Verify.Exceptions;
 
 internal class AccountAlreadyVerifiedException : CustomException
 {

@@ -41,3 +41,10 @@ services:
     env:
       - name: ASPNETCORE_ENVIRONMENT
         value: development
+  - name: virtualfreezer-verification-api
+    project: AccountVerification/src/VirtualFreezer.AccountVerification/VirtualFreezer.AccountVerification.csproj
+    bindings:
+      - port: 5050
+    env:
+      - name: ASPNETCORE_ENVIRONMENT
+        value: development

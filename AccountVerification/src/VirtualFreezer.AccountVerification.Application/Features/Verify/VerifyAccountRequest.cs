@@ -1,4 +1,4 @@
-namespace VirtualFreezer.Identity.Application.Features.Verify;
+namespace VirtualFreezer.AccountVerification.Application.Features.Verify;
 
 internal class VerifyAccountRequest
 {

@@ -12,6 +12,5 @@ internal class UserConfiguration : IEntityTypeConfiguration<User>
         builder.HasKey(x => x.Id);
         builder.HasIndex(x => x.Email).IsUnique();
         builder.Property(x => x.Email).HasConversion(x => x.Value, x => new Email(x)).IsRequired();
-        builder.HasIndex(x => x.VerificationHash).IsUnique();
     }
 }

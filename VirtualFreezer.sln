@@ -46,6 +46,32 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualFreezer.Identity.App
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualFreezer.Identity.Infrastructure", "Identity\src\VirtualFreezer.Identity.Infrastructure\VirtualFreezer.Identity.Infrastructure.csproj", "{C49FA976-9B11-4E5A-81EC-C707692D61CF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AABABF9-D84A-46FA-9580-DC58C6FF26BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{557C3E54-CEDE-4729-A1E6-5D7ECD0FF2C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualFreezer.Shared.Testing", "Shared\VirtualFreezer.Shared.Testing\VirtualFreezer.Shared.Testing.csproj", "{61EE3015-F3AB-495F-BE01-0B9354350BD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualFreezer.Identity.Application.Tests.Unit", "Identity\tests\VirtualFreezer.Identity.Application.Tests.Unit\VirtualFreezer.Identity.Application.Tests.Unit.csproj", "{F6CFC4F3-D667-452D-99CE-E8F92934FA49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualFreezer.Identity.Tests.Integration", "Identity\tests\VirtualFreezer.Identity.Tests.Integration\VirtualFreezer.Identity.Tests.Integration.csproj", "{C692A2B0-F90A-4889-9B65-BDF3A2D6B2AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AccountVerification", "AccountVerification", "{05BE4501-9110-47A8-8EDB-848DB9293919}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{52EB586E-0883-4074-9197-6BF834BC1D3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualFreezer.AccountVerification", "AccountVerification\src\VirtualFreezer.AccountVerification\VirtualFreezer.AccountVerification.csproj", "{4FBAA6F0-3C23-42E2-8167-210795A3AD2D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{AF64FC64-8FE4-4ECD-A810-503715C9B2BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualFreezer.AccountVerification.Api.Tests.Unit", "AccountVerification\tests\VirtualFreezer.AccountVerification.Api.Tests.Unit\VirtualFreezer.AccountVerification.Api.Tests.Unit.csproj", "{D784A930-ED78-4575-9508-D3FB73EE270A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualFreezer.AccountVerification.Domain", "AccountVerification\src\VirtualFreezer.AccountVerification.Domain\VirtualFreezer.AccountVerification.Domain.csproj", "{3C78D927-5990-433A-B47A-51910074666B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualFreezer.AccountVerification.Infrastructure", "AccountVerification\src\VirtualFreezer.AccountVerification.Infrastructure\VirtualFreezer.AccountVerification.Infrastructure.csproj", "{EF3712D6-C12F-4D98-B008-E10A58C02F6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualFreezer.AccountVerification.Application", "AccountVerification\src\VirtualFreezer.AccountVerification.Application\VirtualFreezer.AccountVerification.Application.csproj", "{F5D38F37-61E3-4156-A5EE-4F22646FA819}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,6 +118,38 @@ Global
 		{C49FA976-9B11-4E5A-81EC-C707692D61CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C49FA976-9B11-4E5A-81EC-C707692D61CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C49FA976-9B11-4E5A-81EC-C707692D61CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61EE3015-F3AB-495F-BE01-0B9354350BD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61EE3015-F3AB-495F-BE01-0B9354350BD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61EE3015-F3AB-495F-BE01-0B9354350BD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61EE3015-F3AB-495F-BE01-0B9354350BD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6CFC4F3-D667-452D-99CE-E8F92934FA49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6CFC4F3-D667-452D-99CE-E8F92934FA49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6CFC4F3-D667-452D-99CE-E8F92934FA49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6CFC4F3-D667-452D-99CE-E8F92934FA49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C692A2B0-F90A-4889-9B65-BDF3A2D6B2AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C692A2B0-F90A-4889-9B65-BDF3A2D6B2AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C692A2B0-F90A-4889-9B65-BDF3A2D6B2AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C692A2B0-F90A-4889-9B65-BDF3A2D6B2AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FBAA6F0-3C23-42E2-8167-210795A3AD2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FBAA6F0-3C23-42E2-8167-210795A3AD2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FBAA6F0-3C23-42E2-8167-210795A3AD2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FBAA6F0-3C23-42E2-8167-210795A3AD2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D784A930-ED78-4575-9508-D3FB73EE270A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D784A930-ED78-4575-9508-D3FB73EE270A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D784A930-ED78-4575-9508-D3FB73EE270A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D784A930-ED78-4575-9508-D3FB73EE270A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C78D927-5990-433A-B47A-51910074666B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C78D927-5990-433A-B47A-51910074666B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C78D927-5990-433A-B47A-51910074666B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C78D927-5990-433A-B47A-51910074666B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF3712D6-C12F-4D98-B008-E10A58C02F6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF3712D6-C12F-4D98-B008-E10A58C02F6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF3712D6-C12F-4D98-B008-E10A58C02F6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF3712D6-C12F-4D98-B008-E10A58C02F6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5D38F37-61E3-4156-A5EE-4F22646FA819}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5D38F37-61E3-4156-A5EE-4F22646FA819}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5D38F37-61E3-4156-A5EE-4F22646FA819}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5D38F37-61E3-4156-A5EE-4F22646FA819}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7CAB6743-7E0E-4B15-B6A0-B365C0082CFD} = {A39DA4CC-3690-4F5F-A22F-89CA1698A050}
@@ -111,5 +169,17 @@ Global
 		{D8F9C52F-DDFD-4CB5-804C-82DB8D55D1EE} = {B3FA3D8C-175F-4150-870A-DDC209C6A101}
 		{53AC824F-D32B-4860-8D90-C7D52105D1C2} = {B3FA3D8C-175F-4150-870A-DDC209C6A101}
 		{C49FA976-9B11-4E5A-81EC-C707692D61CF} = {B3FA3D8C-175F-4150-870A-DDC209C6A101}
+		{0AABABF9-D84A-46FA-9580-DC58C6FF26BD} = {481DEAA7-AEA4-4855-B9EA-737CC59F81FF}
+		{557C3E54-CEDE-4729-A1E6-5D7ECD0FF2C1} = {3D3FBE79-7333-46DA-8D35-FEFF41D03D1C}
+		{61EE3015-F3AB-495F-BE01-0B9354350BD3} = {557C3E54-CEDE-4729-A1E6-5D7ECD0FF2C1}
+		{F6CFC4F3-D667-452D-99CE-E8F92934FA49} = {0AABABF9-D84A-46FA-9580-DC58C6FF26BD}
+		{C692A2B0-F90A-4889-9B65-BDF3A2D6B2AB} = {0AABABF9-D84A-46FA-9580-DC58C6FF26BD}
+		{52EB586E-0883-4074-9197-6BF834BC1D3B} = {05BE4501-9110-47A8-8EDB-848DB9293919}
+		{4FBAA6F0-3C23-42E2-8167-210795A3AD2D} = {52EB586E-0883-4074-9197-6BF834BC1D3B}
+		{AF64FC64-8FE4-4ECD-A810-503715C9B2BB} = {05BE4501-9110-47A8-8EDB-848DB9293919}
+		{D784A930-ED78-4575-9508-D3FB73EE270A} = {AF64FC64-8FE4-4ECD-A810-503715C9B2BB}
+		{3C78D927-5990-433A-B47A-51910074666B} = {52EB586E-0883-4074-9197-6BF834BC1D3B}
+		{EF3712D6-C12F-4D98-B008-E10A58C02F6D} = {52EB586E-0883-4074-9197-6BF834BC1D3B}
+		{F5D38F37-61E3-4156-A5EE-4F22646FA819} = {52EB586E-0883-4074-9197-6BF834BC1D3B}
 	EndGlobalSection
 EndGlobal

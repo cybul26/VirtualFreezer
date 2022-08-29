@@ -21,8 +21,9 @@ internal class UserRepository : IUserRepository
         return _dbContext.Users.SingleOrDefaultAsync(x => x.Email == userEmail);
     }
 
-    public Task<User?> GetByVerificationHashAsync(string hash)
-        => _dbContext.Users.SingleOrDefaultAsync(x => x.VerificationHash == hash);
+    public Task<User?> GetByIdAsync(Guid id)
+        => _dbContext.Users.FirstOrDefaultAsync(x => x.Id == id);
+
 
     public async Task UpdateAsync(User user)
     {

@@ -2,7 +2,7 @@ using System.Net;
 
 namespace VirtualFreezer.Shared.Infrastructure.Exceptions.Models;
 
-internal class ExceptionResponse
+public class ExceptionResponse
 {
     public object Response { get; }
     public HttpStatusCode StatusCode { get; }

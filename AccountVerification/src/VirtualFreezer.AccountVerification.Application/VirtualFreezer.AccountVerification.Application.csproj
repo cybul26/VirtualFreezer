@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Shared\Infrastructure\VirtualFreezer.Shared.Infrastructure.csproj" />
+      <ProjectReference Include="..\..\..\Shared\MessageContracts\VirtualFreezer.Shared.MessageContracts.csproj" />
+      <ProjectReference Include="..\VirtualFreezer.AccountVerification.Domain\VirtualFreezer.AccountVerification.Domain.csproj" />
+    </ItemGroup>
+
+</Project>

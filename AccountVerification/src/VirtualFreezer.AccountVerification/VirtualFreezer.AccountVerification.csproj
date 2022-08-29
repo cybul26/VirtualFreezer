@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace>VirtualFreezer.AccountVerification</RootNamespace>
+        <AssemblyName>VirtualFreezer.AccountVerification</AssemblyName>
+      <UserSecretsId>64bf29d8-3600-4273-b713-416139fdd148</UserSecretsId>
+  </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Shared\Infrastructure\VirtualFreezer.Shared.Infrastructure.csproj" />
+      <ProjectReference Include="..\..\..\Shared\MessageContracts\VirtualFreezer.Shared.MessageContracts.csproj" />
+      <ProjectReference Include="..\VirtualFreezer.AccountVerification.Infrastructure\VirtualFreezer.AccountVerification.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.7">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="logs\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="logs\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="logs\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="logs\**" />
+    </ItemGroup>
+
+</Project>

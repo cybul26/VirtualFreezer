@@ -3,12 +3,15 @@ using Microsoft.Extensions.Logging;
 
 namespace VirtualFreezer.Identity.Application.Features.SignOut;
 
-[HttpDelete("sign-out")]
 internal class SignOutEndpoint : EndpointWithoutRequest
 {
     private readonly ILogger<SignOutEndpoint> _logger;
     private const string AccessTokenCookie = "__access-token";
 
+    public override void Configure()
+    {
+        Delete("sign-out");
+    }
 
     public SignOutEndpoint(ILogger<SignOutEndpoint> logger)
     {

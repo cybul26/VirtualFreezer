@@ -1,4 +1,5 @@
 using VirtualFreezer.Identity.Application.Features.SignIn;
+using VirtualFreezer.Identity.Application.Features.SignUp;
 using VirtualFreezer.Identity.Infrastructure;
 using VirtualFreezer.Shared.Infrastructure;
 
@@ -14,6 +15,11 @@ builder.AddMicroFramework(o =>
                 UserName = signIn.Email,
                 Password = "*********"
             },
+            SignUpRequest signUp => new
+            {
+                signUp.Email,
+                Password = "*********"
+            },
             _ => request
         };
 });
@@ -23,3 +29,11 @@ app.UseMicroFramework();
 app.MapGet("/", () => "Identity Service");
 
 app.Run();
+
+//For testing purposes only
+namespace VirtualFreezer.Identity
+{
+    public partial class Program
+    {
+    }
+}

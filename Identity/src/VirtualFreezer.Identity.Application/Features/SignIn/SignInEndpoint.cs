@@ -1,7 +1,6 @@
 using FastEndpoints;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 using VirtualFreezer.Identity.Application.Exceptions;
 using VirtualFreezer.Identity.Domain.Repositories;
 using VirtualFreezer.Shared.Infrastructure.Auth;
@@ -9,25 +8,27 @@ using VirtualFreezer.Shared.Infrastructure.Security;
 
 namespace VirtualFreezer.Identity.Application.Features.SignIn;
 
-[HttpPost("sign-in")]
-[AllowAnonymous]
 internal class SignInEndpoint : Endpoint<SignInRequest>
 {
     private const string AccessTokenCookie = "__access-token";
-    private readonly ILogger<SignInEndpoint> _logger;
     private readonly CookieOptions _cookieOptions;
     private readonly IAuthManager _authManager;
     private readonly IUserRepository _userRepository;
     private readonly IPasswordManager _passwordManager;
 
-    public SignInEndpoint(ILogger<SignInEndpoint> logger, CookieOptions cookieOptions, IAuthManager authManager,
+    public SignInEndpoint(CookieOptions cookieOptions, IAuthManager authManager,
         IUserRepository userRepository, IPasswordManager passwordManager)
     {
-        _logger = logger;
         _cookieOptions = cookieOptions;
         _authManager = authManager;
         _userRepository = userRepository;
         _passwordManager = passwordManager;
+    }
+
+    public override void Configure()
+    {
+        Post("sign-in");
+        AllowAnonymous();
     }
 
     public override async Task HandleAsync(SignInRequest req, CancellationToken ct)
@@ -36,12 +37,12 @@ internal class SignInEndpoint : Endpoint<SignInRequest>
 
         if (user is null)
         {
-            throw new InvalidCredentialsExceptions(req.Email);
+            throw new InvalidCredentialsException(req.Email);
         }
 
         if (!_passwordManager.IsValid(req.Password, user!.PasswordHash))
         {
-            throw new InvalidCredentialsExceptions(req.Email);
+            throw new InvalidCredentialsException(req.Email);
         }
 
         if (!user.IsVerified)

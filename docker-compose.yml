@@ -75,16 +75,16 @@ services:
     # volumes:
     #   - prometheus:/prometheus
 
-  # rabbitmq:
-  #   build: ./rabbitmq
-  #   container_name: rabbitmq
-  #   restart: unless-stopped
-  #   networks:
-  #     - micro
-  #   ports:
-  #     - 5672:5672
-  #     - 15672:15672
-  #     - 15692:15692
+  rabbitmq:
+    build: ./rabbitmq
+    container_name: rabbitmq
+    restart: unless-stopped
+    networks:
+      - freezer
+    ports:
+      - 5672:5672
+      - 15672:15672
+      - 15692:15692
     # volumes: 
     #   - rabbitmq:/var/lib/rabbitmq
 

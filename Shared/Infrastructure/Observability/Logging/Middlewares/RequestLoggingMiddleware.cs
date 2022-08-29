@@ -60,6 +60,7 @@ internal class RequestLoggingMiddleware : IMiddleware
             return new EmptyRequest();
         }
 
+
         context.Request.EnableBuffering();
 
         using var reader = new StreamReader(
@@ -69,7 +70,9 @@ internal class RequestLoggingMiddleware : IMiddleware
             leaveOpen: true);
 
         var strRequestBody = await reader.ReadToEndAsync();
-        var request = _jsonSerializer.Deserialize(strRequestBody, typeOfRequestDto!);
+        var request = string.IsNullOrEmpty(strRequestBody)
+            ? new EmptyRequest()
+            : _jsonSerializer.Deserialize(strRequestBody, typeOfRequestDto!);
 
         var mappedRequest = _mappingConfiguration.MapRequestToLog(request);
 

@@ -1,4 +1,3 @@
-using FastEndpoints;
 using FastEndpoints.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -7,11 +6,13 @@ using VirtualFreezer.Shared.Infrastructure.Auth;
 using VirtualFreezer.Shared.Infrastructure.Contexts;
 using VirtualFreezer.Shared.Infrastructure.Exceptions;
 using VirtualFreezer.Shared.Infrastructure.FastEndpoints;
+using VirtualFreezer.Shared.Infrastructure.Mailing;
 using VirtualFreezer.Shared.Infrastructure.Observability.Logging;
 using VirtualFreezer.Shared.Infrastructure.Observability.Logging.Middlewares;
 using VirtualFreezer.Shared.Infrastructure.Security;
 using VirtualFreezer.Shared.Infrastructure.Serialization;
 using VirtualFreezer.Shared.Infrastructure.Time;
+using VirtualFreezer.Shared.Infrastructure.Transactions;
 
 namespace VirtualFreezer.Shared.Infrastructure;
 
@@ -26,6 +27,7 @@ public static class Extensions
             .Services
             .AddSingleton<IClock, UtcClock>()
             .AddSingleton<IJsonSerializer, SystemTextJsonSerializer>()
+            .AddTransactions()
             .AddErrorHandling()
             .AddEndpoints()
             .AddSwaggerDoc()
@@ -33,7 +35,8 @@ public static class Extensions
             .AddAuth()
             .AddContexts()
             .AddHttpContextAccessor()
-            .AddSecurity();
+            .AddSecurity()
+            .AddMailing(builder.Configuration);
 
 
         return builder;
@@ -46,6 +49,7 @@ public static class Extensions
         app.UseContexts();
         app.UseAuth();
         app.UseRequestLogging();
+        app.UseTransactions();
         app.UseEndpoints();
         app.UseOpenApi();
         app.UseSwaggerUi3(c => { c.ConfigureDefaults(); });
