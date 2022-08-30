@@ -23,7 +23,7 @@ jobs:
         run: echo "::set-output name=date::$(date +'%Y-%m-%d--%M-%S')"
 
       - name: Build the docker image
-        run: docker build . --file Gateway/Dockerfile --tag $DOCKER_USER/virtual-freezer-gateway:${{ steps.date.outputs.date }}
+        run: docker buildx build . --file Gateway/Dockerfile --tag $DOCKER_USER/virtual-freezer-gateway:${{ steps.date.outputs.date }}
 
       - name: Docker push
-        run: docker push $DOCKER_USER/virtual-freezer-gateway:${{ steps.date.outputs.date }}
+        run: docker push --platform=linux/arm64 $DOCKER_USER/virtual-freezer-gateway:${{ steps.date.outputs.date }}

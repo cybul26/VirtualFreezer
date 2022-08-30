@@ -1,0 +1,32 @@
+version: '2.0'
+
+services:
+  gateway:
+    image: cybul26/virtual-freezer-gateway:2022-08-29--55-32
+    container_name: gateway
+    restart: unless-stopped
+    networks:
+      - freezer
+    ports:
+      - 5001:80
+  identity:
+    image: cybul26/virtual-freezer-identity:2022-08-29--02-12
+    container_name: identity
+    restart: unless-stopped
+    networks:
+      - freezer
+    ports:
+      - 5010:80
+  account-verification:
+    image: cybul26/virtual-freezer-account-verification:2022-08-29--42-34
+    container_name: account-verification
+    restart: unless-stopped
+    networks:
+      - freezer
+    ports:
+      - 5050:80
+
+networks:
+  freezer:
+    name: freezer-network
+    external: true
