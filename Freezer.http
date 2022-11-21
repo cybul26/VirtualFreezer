@@ -3,6 +3,7 @@
 @customerId = 00000000-0000-0000-0000-000000000001
 @email = cybul26@gmail.com
 @password = test123
+@verificationHash = test123
 ###
 GET {{indentityUrl}}
 
@@ -21,8 +22,12 @@ PUT {{verificationUrl}}/verify
 Content-Type: application/json
 
 {
-    "verificationHash": "hjr8DOcTOByrx772U1L3Q4ZrMJ8ePxT8LbgjSN148sNDniqGW64oxB71ZyqE2G97Y"
+    "verificationHash": "{{verificationHash}}"
 }
+
+###
+# @name resend
+PUT {{verificationUrl}}/resend?email={{{{email}}}}
 
 ###
 # @name login

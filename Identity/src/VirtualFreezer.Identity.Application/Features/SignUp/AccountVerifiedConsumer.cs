@@ -15,10 +15,10 @@ public class AccountVerifiedConsumer : IConsumer<AccountVerified>
     }
     public async Task Consume(ConsumeContext<AccountVerified> context)
     {
-        var user = await _userRepository.GetByIdAsync(context.Message.AccountId);
+        var user = await _userRepository.GetByEmailAsync(context.Message.Email);
         if (user is null)
         {
-            throw new UserNotFoundException(context.Message.AccountId);
+            throw new UserNotFoundException(context.Message.Email);
         }
         user.Verify();
         await _userRepository.UpdateAsync(user);

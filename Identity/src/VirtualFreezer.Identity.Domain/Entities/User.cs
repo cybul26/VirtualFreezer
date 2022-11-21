@@ -17,10 +17,6 @@ public class User
         IsVerified = isVerified;
     }
 
-    private User()
-    {
-    }
-
     public void Verify()
     {
         IsVerified = true;

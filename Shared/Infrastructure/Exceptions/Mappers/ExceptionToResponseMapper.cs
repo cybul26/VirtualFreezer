@@ -2,6 +2,7 @@ using System.Collections.Concurrent;
 using System.Net;
 using FluentValidation;
 using Humanizer;
+using VirtualFreezer.Shared.Abstractions.Exceptions;
 using VirtualFreezer.Shared.Infrastructure.Exceptions.Models;
 
 namespace VirtualFreezer.Shared.Infrastructure.Exceptions.Mappers;

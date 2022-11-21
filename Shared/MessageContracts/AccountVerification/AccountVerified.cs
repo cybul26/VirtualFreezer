@@ -1,3 +1,3 @@
 namespace VirtualFreezer.MessageContracts.AccountVerification;
 
-public record AccountVerified(Guid AccountId);
+public record AccountVerified(string Email);

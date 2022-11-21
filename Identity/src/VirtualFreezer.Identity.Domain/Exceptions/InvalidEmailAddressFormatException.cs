@@ -1,3 +1,4 @@
+using VirtualFreezer.Shared.Abstractions.Exceptions;
 using VirtualFreezer.Shared.Infrastructure.Exceptions.Models;
 
 namespace VirtualFreezer.Identity.Domain.Exceptions;

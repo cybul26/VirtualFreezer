@@ -2,18 +2,20 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using VirtualFreezer.AccountVerification.Infrastructure.EF;
 
 #nullable disable
 
-namespace AccountConfirmation.Api.EF.Migrations
+namespace VirtualFreezer.AccountVerification.Infrastructure.EF.Migrations
 {
     [DbContext(typeof(VerificationDbContext))]
-    partial class VerificationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221121214546_email_as_key_and_resends_made")]
+    partial class email_as_key_and_resends_made
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

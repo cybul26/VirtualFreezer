@@ -1,3 +1,4 @@
+using VirtualFreezer.Shared.Abstractions.Exceptions;
 using VirtualFreezer.Shared.Infrastructure.Exceptions.Models;
 
 namespace VirtualFreezer.AccountVerification.Application.Features.Verify.Exceptions;

@@ -35,15 +35,12 @@ public class UserRegisteredConsumer : IConsumer<UserRegistered>
 
     public async Task Consume(ConsumeContext<UserRegistered> context)
     {
-        _logger.LogInformation("Sending verification email to user with id: {UserId} and email: {Email}",
-            context.Message.UserId, context.Message.Email);
+        _logger.LogInformation("Sending verification email to address: {Email}", context.Message.Email);
 
         var verificationHash = _rng.Generate();
-        var verification = new Verification(Guid.NewGuid(), context.Message.UserId, verificationHash,
-            _clock.CurrentDate().Add(_options.HashValidationTime));
-
+        var verification = Verification.Create(context.Message.Email, verificationHash,
+            _options.HashValidationTime, _clock.CurrentDate());
         await _repository.AddAsync(verification);
-
         var email = _mailFactory.Create(context.Message.Email, verificationHash);
         await _client.SendEmailAsync(email);
     }

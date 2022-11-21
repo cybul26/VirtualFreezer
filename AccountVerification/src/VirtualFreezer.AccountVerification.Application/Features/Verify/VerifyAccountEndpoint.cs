@@ -39,20 +39,10 @@ internal class VerifyAccountEndpoint : Endpoint<VerifyAccountRequest>
             throw new VerificationHashNotFoundException(req.VerificationHash);
         }
 
-        if (verification.IsVerified)
-        {
-            throw new AccountAlreadyVerifiedException(verification.UserId);
-        }
-
-        if (verification.ValidUntil < _clock.CurrentDate())
-        {
-            throw new VerificationValidationDateExpired(verification.Id);
-        }
-
-        verification.Verify();
+        verification.Verify(_clock.CurrentDate());
 
         await _repository.UpdateAsync(verification);
-        _logger.LogInformation("Verified user account. User id: '{UserId}'", verification.Id);
-        await _bus.Publish(new AccountVerified(verification.UserId), ct);
+        _logger.LogInformation("Verified user account. User email: '{Email}'", verification.Email);
+        await _bus.Publish(new AccountVerified(verification.Email), ct);
     }
 }
