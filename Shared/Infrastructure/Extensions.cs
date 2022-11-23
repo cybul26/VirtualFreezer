@@ -11,7 +11,6 @@ using VirtualFreezer.Shared.Infrastructure.Observability.Logging;
 using VirtualFreezer.Shared.Infrastructure.Observability.Logging.Middlewares;
 using VirtualFreezer.Shared.Infrastructure.Security;
 using VirtualFreezer.Shared.Infrastructure.Serialization;
-using VirtualFreezer.Shared.Infrastructure.Time;
 using VirtualFreezer.Shared.Infrastructure.Transactions;
 
 namespace VirtualFreezer.Shared.Infrastructure;
@@ -25,7 +24,6 @@ public static class Extensions
         builder
             .AddLogging()
             .Services
-            .AddSingleton<IClock, UtcClock>()
             .AddSingleton<IJsonSerializer, SystemTextJsonSerializer>()
             .AddTransactions()
             .AddErrorHandling()

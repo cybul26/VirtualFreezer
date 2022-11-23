@@ -2,18 +2,20 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using VirtualFreezer.AccountVerification.Infrastructure.EF;
 
 #nullable disable
 
-namespace AccountConfirmation.Api.EF.Migrations
+namespace VirtualFreezer.AccountVerification.Infrastructure.EF.Migrations
 {
     [DbContext(typeof(VerificationDbContext))]
-    partial class VerificationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221122213931_resends_added_to_verification")]
+    partial class resends_added_to_verification
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,17 +29,15 @@ namespace AccountConfirmation.Api.EF.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("text");
 
+                    b.Property<bool>("IsVerified")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ValidUntil")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("VerificationHash")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<bool>("_isVerified")
-                        .HasColumnType("boolean")
-                        .HasColumnName("IsVerified");
-
-                    b.Property<DateTime>("_validUntil")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("ValidUntil");
 
                     b.HasKey("Email");
 
@@ -53,14 +53,15 @@ namespace AccountConfirmation.Api.EF.Migrations
                     b.OwnsMany("VirtualFreezer.AccountVerification.Domain.Entities.Resend", "_resends", b1 =>
                         {
                             b1.Property<Guid>("Id")
+                                .ValueGeneratedOnAdd()
                                 .HasColumnType("uuid");
+
+                            b1.Property<DateTime>("DateTimeUtc")
+                                .HasColumnType("timestamp without time zone");
 
                             b1.Property<string>("Email")
                                 .IsRequired()
                                 .HasColumnType("text");
-
-                            b1.Property<DateTime>("When")
-                                .HasColumnType("timestamp without time zone");
 
                             b1.HasKey("Id");
 

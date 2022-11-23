@@ -5,7 +5,7 @@ using VirtualFreezer.AccountVerification.Application.Options;
 using VirtualFreezer.Shared.Infrastructure.Mailing;
 using Xunit;
 
-namespace VirtualFreezer.AccountVerification.Api.Tests.Unit.Features.SendVerification;
+namespace VirtualFreezer.AccountVerification.Application.Tests.Unit.Features.SendVerification;
 
 public class VerificationMailFactoryTests
 {
@@ -26,7 +26,7 @@ public class VerificationMailFactoryTests
         };
         var sut = new VerificationMailFactory(sendGridOptions, verificationOptions);
 
-        var actual = sut.Create("consumer@test.pl","hash");
+        var actual = sut.Create("consumer@test.pl", "hash");
 
         actual.From.Email.Should().Be(sendGridOptions.SenderEmail);
         actual.TemplateId.Should().Be("test");

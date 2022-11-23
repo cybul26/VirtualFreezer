@@ -62,7 +62,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualFreezer.AccountVerif
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{AF64FC64-8FE4-4ECD-A810-503715C9B2BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualFreezer.AccountVerification.Api.Tests.Unit", "AccountVerification\tests\VirtualFreezer.AccountVerification.Api.Tests.Unit\VirtualFreezer.AccountVerification.Api.Tests.Unit.csproj", "{D784A930-ED78-4575-9508-D3FB73EE270A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualFreezer.AccountVerification.Application.Tests.Unit", "AccountVerification\tests\VirtualFreezer.AccountVerification.Application.Tests.Unit\VirtualFreezer.AccountVerification.Application.Tests.Unit.csproj", "{D784A930-ED78-4575-9508-D3FB73EE270A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualFreezer.AccountVerification.Domain", "AccountVerification\src\VirtualFreezer.AccountVerification.Domain\VirtualFreezer.AccountVerification.Domain.csproj", "{3C78D927-5990-433A-B47A-51910074666B}"
 EndProject
@@ -75,6 +75,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Abstractions", "Abstractions", "{CED23E16-61E4-46BA-9F07-4149F139FAE3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualFreezer.Shared.Abstractions", "Shared\VirtualFreezer.Shared.Abstractions\VirtualFreezer.Shared.Abstractions.csproj", "{B2FEF284-8C29-4DCB-8A10-8ADE6597E1C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualFreezer.AccountVerification.Domain.Tests.Unit", "AccountVerification\tests\VirtualFreezer.AccountVerification.Domain.Tests.Unit\VirtualFreezer.AccountVerification.Domain.Tests.Unit.csproj", "{FEDFD6DC-1E3A-491D-812D-5B6B6109BA72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -158,6 +160,10 @@ Global
 		{B2FEF284-8C29-4DCB-8A10-8ADE6597E1C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2FEF284-8C29-4DCB-8A10-8ADE6597E1C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2FEF284-8C29-4DCB-8A10-8ADE6597E1C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEDFD6DC-1E3A-491D-812D-5B6B6109BA72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEDFD6DC-1E3A-491D-812D-5B6B6109BA72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEDFD6DC-1E3A-491D-812D-5B6B6109BA72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEDFD6DC-1E3A-491D-812D-5B6B6109BA72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7CAB6743-7E0E-4B15-B6A0-B365C0082CFD} = {A39DA4CC-3690-4F5F-A22F-89CA1698A050}
@@ -191,5 +197,6 @@ Global
 		{506C3E2E-EF29-4192-820C-5CE14DDFF5F0} = {7CAB6743-7E0E-4B15-B6A0-B365C0082CFD}
 		{CED23E16-61E4-46BA-9F07-4149F139FAE3} = {3D3FBE79-7333-46DA-8D35-FEFF41D03D1C}
 		{B2FEF284-8C29-4DCB-8A10-8ADE6597E1C3} = {CED23E16-61E4-46BA-9F07-4149F139FAE3}
+		{FEDFD6DC-1E3A-491D-812D-5B6B6109BA72} = {AF64FC64-8FE4-4ECD-A810-503715C9B2BB}
 	EndGlobalSection
 EndGlobal

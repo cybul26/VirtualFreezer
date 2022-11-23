@@ -2,7 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
-using VirtualFreezer.Shared.Infrastructure.Time;
+using VirtualFreezer.Shared.Abstractions;
 using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 
 namespace VirtualFreezer.Shared.Infrastructure.Auth;
@@ -11,11 +11,10 @@ public sealed class AuthManager : IAuthManager
 {
     private static readonly Dictionary<string, IEnumerable<string>> EmptyClaims = new();
     private readonly AuthOptions _options;
-    private readonly IClock _clock;
     private readonly SigningCredentials _signingCredentials;
     private readonly string _issuer;
 
-    public AuthManager(AuthOptions options, IClock clock)
+    public AuthManager(AuthOptions options)
     {
         var issuerSigningKey = options.IssuerSigningKey;
         if (issuerSigningKey is null)
@@ -24,7 +23,6 @@ public sealed class AuthManager : IAuthManager
         }
 
         _options = options;
-        _clock = clock;
         _signingCredentials =
             new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.IssuerSigningKey)),
                 SecurityAlgorithms.HmacSha256);
@@ -34,7 +32,7 @@ public sealed class AuthManager : IAuthManager
     public JsonWebToken CreateToken(Guid userId, string? role = null, string? audience = null,
         IDictionary<string, IEnumerable<string>>? claims = null)
     {
-        var now = _clock.CurrentDate();
+        var now = SystemClock.Now;
         var jwtClaims = new List<Claim>
         {
             new(JwtRegisteredClaimNames.Sub, userId.ToString()),

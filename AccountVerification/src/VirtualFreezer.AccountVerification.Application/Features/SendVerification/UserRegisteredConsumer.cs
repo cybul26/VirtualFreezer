@@ -6,7 +6,6 @@ using VirtualFreezer.AccountVerification.Domain.Entities;
 using VirtualFreezer.AccountVerification.Domain.Repositories;
 using VirtualFreezer.MessageContracts.Identity;
 using VirtualFreezer.Shared.Infrastructure.Security.Random;
-using VirtualFreezer.Shared.Infrastructure.Time;
 
 namespace VirtualFreezer.AccountVerification.Application.Features.SendVerification;
 
@@ -16,19 +15,17 @@ public class UserRegisteredConsumer : IConsumer<UserRegistered>
     private readonly ISendGridClient _client;
     private readonly IVerificationsRepository _repository;
     private readonly IRng _rng;
-    private readonly IClock _clock;
     private readonly VerificationOptions _options;
     private readonly IVerificationMailFactory _mailFactory;
 
     public UserRegisteredConsumer(ILogger<UserRegisteredConsumer> logger, ISendGridClient client,
-        IVerificationsRepository repository, IRng rng, IClock clock,
+        IVerificationsRepository repository, IRng rng,
         VerificationOptions options, IVerificationMailFactory mailFactory)
     {
         _logger = logger;
         _client = client;
         _repository = repository;
         _rng = rng;
-        _clock = clock;
         _options = options;
         _mailFactory = mailFactory;
     }
@@ -39,7 +36,7 @@ public class UserRegisteredConsumer : IConsumer<UserRegistered>
 
         var verificationHash = _rng.Generate();
         var verification = Verification.Create(context.Message.Email, verificationHash,
-            _options.HashValidationTime, _clock.CurrentDate());
+            _options.HashValidationTime);
         await _repository.AddAsync(verification);
         var email = _mailFactory.Create(context.Message.Email, verificationHash);
         await _client.SendEmailAsync(email);

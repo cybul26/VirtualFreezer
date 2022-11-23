@@ -1,5 +1,4 @@
 ﻿using VirtualFreezer.Shared.Infrastructure.Auth;
-using VirtualFreezer.Shared.Infrastructure.Time;
 
 namespace VirtualFreezer.Shared.Testing
 {
@@ -10,7 +9,7 @@ namespace VirtualFreezer.Shared.Testing
         static AuthHelper()
         {
             var options = OptionsHelper.GetOptions<AuthOptions>("auth");
-            AuthManager = new AuthManager(options, new UtcClock());
+            AuthManager = new AuthManager(options);
         }
 
         public static string GenerateJwt(Guid userId, string role = null, string audience = null,

@@ -2,18 +2,20 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using VirtualFreezer.AccountVerification.Infrastructure.EF;
 
 #nullable disable
 
-namespace AccountConfirmation.Api.EF.Migrations
+namespace VirtualFreezer.AccountVerification.Infrastructure.EF.Migrations
 {
     [DbContext(typeof(VerificationDbContext))]
-    partial class VerificationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221123075738_verification_changed_some_properties_to_private_field")]
+    partial class verification_changed_some_properties_to_private_field
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

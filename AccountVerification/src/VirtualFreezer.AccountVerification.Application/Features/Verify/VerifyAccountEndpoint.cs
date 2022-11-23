@@ -4,7 +4,6 @@ using Microsoft.Extensions.Logging;
 using VirtualFreezer.AccountVerification.Application.Features.Verify.Exceptions;
 using VirtualFreezer.AccountVerification.Domain.Repositories;
 using VirtualFreezer.MessageContracts.AccountVerification;
-using VirtualFreezer.Shared.Infrastructure.Time;
 
 namespace VirtualFreezer.AccountVerification.Application.Features.Verify;
 
@@ -12,16 +11,12 @@ internal class VerifyAccountEndpoint : Endpoint<VerifyAccountRequest>
 {
     private readonly IVerificationsRepository _repository;
     private readonly ILogger<VerifyAccountEndpoint> _logger;
-    private readonly IClock _clock;
     private readonly IBus _bus;
 
-    public VerifyAccountEndpoint(IVerificationsRepository repository, ILogger<VerifyAccountEndpoint> logger,
-        IClock clock,
-        IBus bus)
+    public VerifyAccountEndpoint(IVerificationsRepository repository, ILogger<VerifyAccountEndpoint> logger, IBus bus)
     {
         _repository = repository;
         _logger = logger;
-        _clock = clock;
         _bus = bus;
     }
 
@@ -39,7 +34,7 @@ internal class VerifyAccountEndpoint : Endpoint<VerifyAccountRequest>
             throw new VerificationHashNotFoundException(req.VerificationHash);
         }
 
-        verification.Verify(_clock.CurrentDate());
+        verification.Verify();
 
         await _repository.UpdateAsync(verification);
         _logger.LogInformation("Verified user account. User email: '{Email}'", verification.Email);

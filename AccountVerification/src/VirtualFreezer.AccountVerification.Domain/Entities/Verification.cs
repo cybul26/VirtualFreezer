@@ -1,66 +1,54 @@
-using VirtualFreezer.AccountVerification.Domain.Exceptions;
+using VirtualFreezer.AccountVerification.Domain.Entities.BusinessRules;
 using VirtualFreezer.AccountVerification.Domain.ValueObjects;
+using VirtualFreezer.Shared.Abstractions;
+using VirtualFreezer.Shared.Abstractions.Domain;
 
 namespace VirtualFreezer.AccountVerification.Domain.Entities;
 
-public class Verification
+public class Verification : Entity
 {
+    private DateTime _validUntil;
+    private bool _isVerified;
+    private readonly List<Resend> _resends = new();
     public Email Email { get; set; }
     public string VerificationHash { get; private set; }
-    public DateTime ValidUntil { get; private set; }
-    public bool IsVerified { get; private set; }
-    public int ResendsMade { get; private set; }
 
-    private Verification(Email email, string verificationHash, DateTime validUntil, bool isVerified,
-        int resendsMade)
+    public IReadOnlyCollection<Resend> Resends => _resends.AsReadOnly();
+
+    private Verification(Email email, string verificationHash, DateTime validUntil, bool isVerified)
     {
         Email = email;
         VerificationHash = verificationHash;
-        ValidUntil = validUntil;
-        IsVerified = isVerified;
-        ResendsMade = resendsMade;
+        _validUntil = validUntil;
+        _isVerified = isVerified;
     }
 
-    public static Verification Create(string email, string verificationHash, TimeSpan hashValidationTime, DateTime now)
+    public static Verification Create(string email, string verificationHash, TimeSpan hashValidationTime)
     {
-        var validUntil = CalculateNewValidateUntilDateTime(hashValidationTime, now);
+        var validUntil = CalculateNewValidateUntilDateTime(hashValidationTime);
 
-        return new Verification(email, verificationHash, validUntil, false, 0);
+        return new Verification(email, verificationHash, validUntil, false);
     }
 
-    private static DateTime CalculateNewValidateUntilDateTime(TimeSpan hashValidationTime, DateTime now) =>
-        now.Add(hashValidationTime);
+    private static DateTime CalculateNewValidateUntilDateTime(TimeSpan hashValidationTime) =>
+        SystemClock.Now.Add(hashValidationTime);
 
-    public void Verify(DateTime now)
+    public void Verify()
     {
-        if (IsVerified)
-        {
-            throw new AccountAlreadyVerifiedException(Email);
-        }
-
-        if (ValidUntil < now)
-        {
-            throw new VerificationValidationDateExpired(Email);
-        }
-
-        IsVerified = true;
+        CheckRule(new CannotVerifyAlreadyVerifiedVerificationRule(_isVerified));
+        CheckRule(new VerificationHashCannotBeExpiredRule(_validUntil));
+        _isVerified = true;
     }
 
-    public void Resend(int maxResends, TimeSpan hashValidationTime, DateTime now)
+    public void Resend(int maxResends, TimeSpan hashValidationTime, TimeSpan minimumTimeBetweenResends)
     {
-        if (IsVerified)
-        {
-            throw new AccountAlreadyVerifiedException(Email);
-        }
-        
-        if (ResendsMade + 1 > maxResends)
-        {
-            throw new MaxResendsReachedException();
-        }
-        
-        var validUntil = CalculateNewValidateUntilDateTime(hashValidationTime, now);
+        CheckRule(new CannotVerifyAlreadyVerifiedVerificationRule(_isVerified));
+        CheckRule(new CannotExceedMaxResendsRule(maxResends, _resends));
+        CheckRule(new MinimumTimeBetweenResendsRule(_resends, minimumTimeBetweenResends));
 
-        ValidUntil = validUntil;
-        ResendsMade++;
+        var validUntil = CalculateNewValidateUntilDateTime(hashValidationTime);
+
+        _validUntil = validUntil;
+        _resends.Add(new Resend(Guid.NewGuid(), SystemClock.Now, Email));
     }
 }

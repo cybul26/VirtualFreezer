@@ -2,6 +2,7 @@ using System.Collections.Concurrent;
 using System.Net;
 using FluentValidation;
 using Humanizer;
+using VirtualFreezer.Shared.Abstractions.Domain;
 using VirtualFreezer.Shared.Abstractions.Exceptions;
 using VirtualFreezer.Shared.Infrastructure.Exceptions.Models;
 
@@ -14,6 +15,9 @@ internal class ExceptionToResponseMapper : IExceptionToResponseMapper
     public ExceptionResponse Map(Exception exception)
         => exception switch
         {
+            BusinessRuleValidationException ex => new ExceptionResponse(
+                new Error(GetErrorCode(ex.BrokenRule), ex.Message)
+                , HttpStatusCode.BadRequest),
             CustomException ex => new ExceptionResponse(new Error(GetErrorCode(ex), ex.Message)
                 , HttpStatusCode.BadRequest),
             ValidationException ex => new ExceptionResponse(new ValidationError("validation",
@@ -29,7 +33,8 @@ internal class ExceptionToResponseMapper : IExceptionToResponseMapper
     private static string GetErrorCode(object exception)
     {
         var type = exception.GetType();
-        return Codes.GetOrAdd(type, type.Name.Underscore().Replace("_exception", string.Empty));
+        return Codes.GetOrAdd(type,
+            type.Name.Underscore().Replace("_exception", string.Empty).Replace("_rule", string.Empty));
     }
 
     private static Dictionary<TKey, List<TValue>> GroupToDictionary<TItem, TKey, TValue>(List<TItem> items,

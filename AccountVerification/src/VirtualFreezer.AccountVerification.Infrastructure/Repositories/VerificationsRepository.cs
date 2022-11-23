@@ -24,7 +24,7 @@ internal class VerificationsRepository : IVerificationsRepository
         => _context.Verifications.FirstOrDefaultAsync(x => x.VerificationHash == hash);
 
     public Task<Verification?> GetByEmailAsync(string email)
-        => _context.Verifications.FirstOrDefaultAsync(x => x.Email == email);
+        => _context.Verifications.Include("_resends").FirstOrDefaultAsync(x => x.Email == email);
 
 
     public async Task UpdateAsync(Verification verification)
