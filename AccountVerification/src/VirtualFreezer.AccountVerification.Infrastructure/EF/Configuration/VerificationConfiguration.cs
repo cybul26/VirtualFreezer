@@ -18,7 +18,7 @@ internal class VerificationConfiguration : IEntityTypeConfiguration<Verification
         builder.HasIndex(x => x.Email);
         builder.HasIndex(x => x.VerificationHash);
         builder.Property(x => x.Email).HasConversion(emailConverter).IsRequired();
-        builder.Property<DateTime>("_validUntil").HasColumnName("ValidUntil");
+        builder.Property<DateTime>("_validUntilUtc").HasColumnName("ValidUntilUtc");
         builder.Property<bool>("_isVerified").HasColumnName("IsVerified");
 
         builder.OwnsMany<Resend>("_resends", y =>

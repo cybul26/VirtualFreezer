@@ -1,5 +1,8 @@
-@indentityUrl = http://localhost:5010
-@verificationUrl = http://localhost:5050
+@indentityUrl_ = http://localhost:5010
+@verificationUrl_ = http://localhost:5050
+
+@indentityUrl = http://130.61.177.16:5001/identity
+@verificationUrl = http://130.61.177.16:5001/verification
 @customerId = 00000000-0000-0000-0000-000000000001
 @email = cybul26@gmail.com
 @password = test123
@@ -27,7 +30,7 @@ Content-Type: application/json
 
 ###
 # @name resend
-PUT {{verificationUrl}}/resend?email={{{{email}}}}
+PUT {{verificationUrl}}/resend?email={{email}}
 
 ###
 # @name login

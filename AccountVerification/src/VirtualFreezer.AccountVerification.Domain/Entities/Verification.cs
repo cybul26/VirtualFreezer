@@ -7,7 +7,7 @@ namespace VirtualFreezer.AccountVerification.Domain.Entities;
 
 public class Verification : Entity
 {
-    private DateTime _validUntil;
+    private DateTime _validUntilUtc;
     private bool _isVerified;
     private readonly List<Resend> _resends = new();
     public Email Email { get; set; }
@@ -15,11 +15,11 @@ public class Verification : Entity
 
     public IReadOnlyCollection<Resend> Resends => _resends.AsReadOnly();
 
-    private Verification(Email email, string verificationHash, DateTime validUntil, bool isVerified)
+    private Verification(Email email, string verificationHash, DateTime validUntilUtc, bool isVerified)
     {
         Email = email;
         VerificationHash = verificationHash;
-        _validUntil = validUntil;
+        _validUntilUtc = validUntilUtc;
         _isVerified = isVerified;
     }
 
@@ -35,20 +35,20 @@ public class Verification : Entity
 
     public void Verify()
     {
-        CheckRule(new CannotVerifyAlreadyVerifiedVerificationRule(_isVerified));
-        CheckRule(new VerificationHashCannotBeExpiredRule(_validUntil));
+        CheckRule(new CannotPerformIfAccountAlreadyVerifiedRule(_isVerified));
+        CheckRule(new VerificationHashCannotBeExpiredRule(_validUntilUtc));
         _isVerified = true;
     }
 
     public void Resend(int maxResends, TimeSpan hashValidationTime, TimeSpan minimumTimeBetweenResends)
     {
-        CheckRule(new CannotVerifyAlreadyVerifiedVerificationRule(_isVerified));
+        CheckRule(new CannotPerformIfAccountAlreadyVerifiedRule(_isVerified));
         CheckRule(new CannotExceedMaxResendsRule(maxResends, _resends));
-        CheckRule(new MinimumTimeBetweenResendsRule(_resends, minimumTimeBetweenResends));
+        CheckRule(new CannotViolateMinimumTimeBetweenResendsRule(_resends, minimumTimeBetweenResends));
 
         var validUntil = CalculateNewValidateUntilDateTime(hashValidationTime);
 
-        _validUntil = validUntil;
+        _validUntilUtc = validUntil;
         _resends.Add(new Resend(Guid.NewGuid(), SystemClock.Now, Email));
     }
 }

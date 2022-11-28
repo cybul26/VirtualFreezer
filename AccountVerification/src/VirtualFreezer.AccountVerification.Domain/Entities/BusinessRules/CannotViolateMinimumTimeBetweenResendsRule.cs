@@ -3,12 +3,13 @@ using VirtualFreezer.Shared.Abstractions.Domain;
 
 namespace VirtualFreezer.AccountVerification.Domain.Entities.BusinessRules;
 
-public class MinimumTimeBetweenResendsRule : IBusinessRule
+public class CannotViolateMinimumTimeBetweenResendsRule : IBusinessRule
 {
     private readonly IReadOnlyCollection<Resend> _resends;
     private readonly TimeSpan _minimumTimeBetweenResends;
 
-    public MinimumTimeBetweenResendsRule(IReadOnlyCollection<Resend> resends, TimeSpan minimumTimeBetweenResends)
+    public CannotViolateMinimumTimeBetweenResendsRule(IReadOnlyCollection<Resend> resends,
+        TimeSpan minimumTimeBetweenResends)
     {
         _resends = resends;
         _minimumTimeBetweenResends = minimumTimeBetweenResends;
