@@ -11,7 +11,7 @@ public class Verification : Entity
     private bool _isVerified;
     private readonly List<Resend> _resends = new();
     public Email Email { get; set; }
-    public string VerificationHash { get; private set; }
+    public string VerificationHash { get; }
 
     public IReadOnlyCollection<Resend> Resends => _resends.AsReadOnly();
 

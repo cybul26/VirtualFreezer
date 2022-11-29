@@ -3,10 +3,9 @@
 
 @indentityUrl = http://130.61.177.16:5001/identity
 @verificationUrl = http://130.61.177.16:5001/verification
-@customerId = 00000000-0000-0000-0000-000000000001
-@email = cybul26@gmail.com
+@email = cybul27@gmail.com
 @password = test123
-@verificationHash = test123
+@verificationHash = qjtjHyAPHgXJuwiLk9L3bArjEFrHcY5wWs7V3L65LqaSihqJAuXucGhhszWPLmc
 ###
 GET {{indentityUrl}}
 

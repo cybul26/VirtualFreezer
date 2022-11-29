@@ -17,8 +17,8 @@ public class CannotViolateMinimumTimeBetweenResendsRule : IBusinessRule
 
     public bool IsBroken()
     {
-        var lastSendResend = _resends.MaxBy(x => x.When);
-        return lastSendResend is not null && lastSendResend.When.Add(_minimumTimeBetweenResends) > SystemClock.Now;
+        var lastSendResend = _resends.MaxBy(x => x.WhenUtc);
+        return lastSendResend is not null && lastSendResend.WhenUtc.Add(_minimumTimeBetweenResends) > SystemClock.Now;
     }
 
     public string Message =>
