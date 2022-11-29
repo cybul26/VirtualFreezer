@@ -2,11 +2,11 @@ using VirtualFreezer.Shared.Abstractions.Domain;
 
 namespace VirtualFreezer.AccountVerification.Domain.Entities.BusinessRules;
 
-public class CannotPerformIfAccountAlreadyVerifiedRule : IBusinessRule
+public class CannotPerformWhenAccountAlreadyVerifiedRule : IBusinessRule
 {
     private readonly bool _isVerified;
 
-    public CannotPerformIfAccountAlreadyVerifiedRule(bool isVerified)
+    public CannotPerformWhenAccountAlreadyVerifiedRule(bool isVerified)
     {
         _isVerified = isVerified;
     }

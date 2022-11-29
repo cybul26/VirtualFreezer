@@ -35,14 +35,14 @@ public class Verification : Entity
 
     public void Verify()
     {
-        CheckRule(new CannotPerformIfAccountAlreadyVerifiedRule(_isVerified));
+        CheckRule(new CannotPerformWhenAccountAlreadyVerifiedRule(_isVerified));
         CheckRule(new VerificationHashCannotBeExpiredRule(_validUntilUtc));
         _isVerified = true;
     }
 
     public void Resend(int maxResends, TimeSpan hashValidationTime, TimeSpan minimumTimeBetweenResends)
     {
-        CheckRule(new CannotPerformIfAccountAlreadyVerifiedRule(_isVerified));
+        CheckRule(new CannotPerformWhenAccountAlreadyVerifiedRule(_isVerified));
         CheckRule(new CannotExceedMaxResendsRule(maxResends, _resends));
         CheckRule(new CannotViolateMinimumTimeBetweenResendsRule(_resends, minimumTimeBetweenResends));
 
